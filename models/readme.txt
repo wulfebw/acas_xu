@@ -1,0 +1,1 @@
+this directory contains model snapshots taken during training (in the snapshots directory) and their corresponding .nnet files (in nnet_files directory)

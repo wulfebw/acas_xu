@@ -4,9 +4,9 @@ import random
 
 from state_generator import K_SIZE
 
-INIT_SIZE = 20
-DEFAULT_CAPACITY = 1500000 
-BATCH_SIZE = 2**10
+INIT_SIZE = 10000
+DEFAULT_CAPACITY = 10000000 
+BATCH_SIZE = 2**16
 
 class ReplayMemory(object):
 
@@ -55,7 +55,6 @@ class ReplayMemory(object):
 
         # determine shape of states
         states_shape = (self.batch_size,) + np.shape(self.memory.values()[0][0])
-        # + np.shape(self.memory.values()[0][2])
         rewards_shape = (self.batch_size * K_SIZE)
         nextStates_shape = (self.batch_size * K_SIZE, 5)
 

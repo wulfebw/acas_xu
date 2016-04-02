@@ -59,35 +59,31 @@ class QNetwork(object):
 
         def both(y_true, y_pred):
             d = y_true - y_pred
-            #c = 0*d+0.01
-            #d = T.switch(abs(d)>0.01,c,d)
             a = d**2
             b = 0
             l = T.switch(y_true < 0, a, b)
-            cost1 = l  # T.sum(l, axis=-1)
-
-            return cost1
+            return l
 
         target = Sequential()
 
-        target.add(Dense(128, input_dim=self.input_shape,
+        target.add(Dense(512, input_dim=self.input_shape,
                          init='uniform', activation='relu'))
-        # target.add(Dense(512, init='uniform', activation='relu'))
-        # target.add(Dense(512, init='uniform', activation='relu'))
-        # target.add(Dense(128, init='uniform', activation='relu'))
-        # target.add(Dense(128, init='uniform', activation='relu'))
+        target.add(Dense(512, init='uniform', activation='relu'))
+        target.add(Dense(512, init='uniform', activation='relu'))
+        target.add(Dense(128, init='uniform', activation='relu'))
+        target.add(Dense(128, init='uniform', activation='relu'))
         target.add(Dense(128, init='uniform', activation='relu'))
         target.add(Dense(self.num_actions, init='uniform'))
 
         target.compile(loss=both, optimizer=self.update_rule)
 
         model = Sequential()
-        model.add(Dense(128, input_dim=self.input_shape,
+        model.add(Dense(512, input_dim=self.input_shape,
                         init='uniform', activation='relu'))
-        # model.add(Dense(512, init='uniform', activation='relu'))
-        # model.add(Dense(512, init='uniform', activation='relu'))
-        # model.add(Dense(128, init='uniform', activation='relu'))
-        # model.add(Dense(128, init='uniform', activation='relu'))
+        model.add(Dense(512, init='uniform', activation='relu'))
+        model.add(Dense(512, init='uniform', activation='relu'))
+        model.add(Dense(128, init='uniform', activation='relu'))
+        model.add(Dense(128, init='uniform', activation='relu'))
         model.add(Dense(128, init='uniform', activation='relu'))
         model.add(Dense(self.num_actions, init='uniform'))
 
