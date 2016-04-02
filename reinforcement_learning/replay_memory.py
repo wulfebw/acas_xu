@@ -4,9 +4,9 @@ import random
 
 from state_generator import K_SIZE
 
-INIT_SIZE = 10000
-DEFAULT_CAPACITY = 10000000 
-BATCH_SIZE = 2**16
+INIT_SIZE = 2**14
+DEFAULT_CAPACITY = 2**24 
+BATCH_SIZE = 2**12
 
 class ReplayMemory(object):
 
